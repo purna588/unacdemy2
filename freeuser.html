@@ -1,0 +1,242 @@
+<html>
+<head>
+<style>
+.r{
+display:flex;
+}
+.text {
+    float: left;
+  }
+img{
+height:200px;
+width:200px;
+}
+h4{
+padding-left: 40px;
+}
+h3{
+padding-left: 40px;
+}
+.sub:hover{
+background-color:green;
+box-shadow:0 0 5px black;
+color:white;
+}
+body{
+background-image:url('https://images.unsplash.com/photo-1546984575-757f4f7c13cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
+background-repeat:no-repeat;
+background-size:cover;
+}
+.button {
+  background-color: #3CB371;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button4 {border-radius: 12px;}
+</style>
+<script>
+var sum=0;
+var fdlist="\n\nINFO\n";
+function b(itemname,cost,pass)
+{
+var x="Quantity"+pass;
+var qua=document.getElementById(x).value;
+var total=cost*qua;
+var fd="Course: "+itemname+" Months : "+qua+" Cost : "+total;
+alert(fd);
+sum+=total;
+fdlist=fdlist+"\n"+fd;
+}
+function c(){
+fdlist+="\nTotal amount:"+sum;
+alert(fdlist);
+sessionStorage.setItem("foody",fdlist);
+window.location.href="bill.html";
+}
+window.onload = function() {
+    if (performance.navigation.type === 1) {
+      // Page is reloaded
+      window.location.href = "file:///C:/Users/HEMASRI/Desktop/pra/pratice1.html";
+    }
+  };
+window.onload = function() {
+      setTimeout(function() {
+        var messageElement = document.getElementById('message');
+        messageElement.innerText ='No further operations are allowed.';
+        document.body.style.pointerEvents = 'none';
+      }, 60000);
+    };
+const st=sessionStorage.getItem("user");
+const res = st.replace(/(\r\n|\r|\n)/g, '<br>');
+document.write("<h2>Welcome"+" "+res+"</h2>");
+</script>
+</head>
+<body>
+<center><div id="message" <h1 style="font-family:Courier New">Know enjoy Your free running time</h1>
+</div></center>
+<center><h1 style="font-family:Courier New">Hello free user u have only 20mins to use his site</h1></center><br>
+<center><h1 style="font-family:Courier New">unacademy 2.0</h1></center>
+<br><br><br>
+<div class="r">
+<div class="r" style="border:2px solid black;width:50%">
+<div>
+<iframe width="400" height="315" src="https://www.youtube.com/embed/MNeX4EGtR5Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+<div>
+<h3 id="Name">The basics of c language</h3>
+<h4 >Full Price of course is: 250/-</h4>
+<center><b>Choose Months:</b><select name="quantity" id="Quantity1">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+</select>		
+<b id="price"></b></center>
+<h4>Validity of course after buy</h4>
+<center><h3>4 Months</h3></center><br>
+<center><button id="1" onclick="b('C language',250,1)" class="button button4">ADD</button></center>
+</div>
+</div><br><hr><hr><hr><hr>
+<div class="r" style="border:2px solid black;width:50%">
+<div>
+<iframe width="400" height="315" src="https://www.youtube.com/embed/QoIRX37VZpo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+<div>
+<h3 id="Name">The basics of Python language</h3>
+<h4 id="price">Full Price of course is: 450/-</h4>
+<center><b>Choose Months:</b><select name="quantity" id="Quantity2">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+</select>		
+<b id="price"></b></center>
+<h4>Validity of course after buy</h4>
+<center><h3>4 Months</h3></center><br><br>
+<center><button id="2" onclick="b('Python Language',450,2)"class="button button4">ADD</button></center>
+</div>
+</div>
+</div><br>
+<div class="r">
+<div class="r" style="border:2px solid black;width:50%">
+<div>
+<iframe width="400" height="315" src="https://www.youtube.com/embed/mAtkPQO1FcA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+<div>
+<h3 id="Name">The basics of Java language</h3>
+<h4 >Full Price of course is: 600/-</h4>
+<center><b>Choose Months:</b><select name="quantity" id="Quantity3">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+</select>	
+<b id="price"></b></center>	
+<h4>Validity of course after buy</h4>
+<center><h3>4 Months</h3></center><br><br>
+<center><button id="3" onclick="b('JAVA Language',600,3)"class="button button4">ADD</button></center>
+</div>
+</div><hr><hr><hr><hr>
+<div class="r" style="border:2px solid black;width:50%">
+<div>
+<iframe width="400" height="315" src="https://www.youtube.com/embed/eIHKZfgddLM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+<div>
+<h3 id="Name">The basics of .NET language</h3>
+<h4 >Full Price of course is: 650/-</h4>
+<center><b>Choose Months:</b><select name="quantity" id="Quantity4">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+</select>	
+<b id="price"></b></center>	
+<h4>Validity of course after buy</h4>
+<center><h3>4 Months</h3></center><br><br>
+<center><button id="4" onclick="b('.Net',650,4)"class="button button4">ADD</button></center>
+</div>
+</div>
+</div><br>
+<div class="r">
+<div class="r" style="border:2px solid black;width:50%">
+<div>
+<iframe width="400" height="315" src="https://www.youtube.com/embed/Jrs6Sqcpm2w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+<div>
+<h3 id="Name">The basics of C# language</h3>
+<h4 >Full Price of course is: 700/-</h4>
+<center><b>Choose Months:</b><select name="quantity" id="Quantity5">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+</select>		
+<b id="price"></b></center>
+<h4>Validity of course after buy</h4>
+<center><h3>4 Months</h3></center><br><br>
+<center><button id="5" onclick="b('c#',700,5)"class="button button4">ADD</button></center>
+</div>
+</div><hr><hr><hr><hr>
+<div class="r" style="border:2px solid black;width:50%">
+<div>
+<iframe width="400" height="315" src="https://www.youtube.com/embed/5L7TpWkHw-o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+<div>
+<h3 id="Name">The basics of SQL language</h3>
+<h4 >Full Price of course is: 800/-</h4>
+<center><b>Choose Months:</b><select name="quantity" id="Quantity6">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+</select>
+<b id="price"></b></center>		
+<h4>Validity of course after buy</h4>
+<center><h3>4 Months</h3></center><br><br>
+<center><button id="6" onclick="b('SQL Language',800,6)"class="button button4">ADD</button></center>
+</div>
+</div>
+</div><br>
+<div class="r">
+<div class="r" style="border:2px solid black;width:50%">
+<div>
+<iframe width="400" height="315" src="https://www.youtube.com/embed/upDLs1sn7g4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+<div>
+<h3 id="Name">The basics of JavaScript language</h3>
+<h4 >Full Price of course is: 350/-</h4>
+<center><b>Choose Months:</b><select name="quantity" id="Quantity7">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+</select>	
+<b id="price"></b></center>	
+<h4>Validity of course after buy</h4>
+<center><h3>4 Months</h3></center><br><br>
+<center><button id="7" onclick="b('Java Script',350,7)"class="button button4">ADD</button></center>
+</div>
+</div><hr><hr><hr><hr>
+<div class="r" style="border:2px solid black;width:50%">
+<div>
+<iframe width="400" height="315" src="https://www.youtube.com/embed/xKuJrmlCdig" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+<div>
+<h3 id="Name">The basics of html language</h3>
+<h4 >Full Price of course is: 200/-</h4>
+<center><b>Choose Months:</b><select name="quantity" id="Quantity8">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+</select>
+<b id="price"></b></center>		
+<h4>Validity of course after buy</h4>
+<center><h3>4 Months</h3></center><br><br>
+<center><button id="8" onclick="b('HTML',200,8)"class="button button4">ADD</button></center>
+</div>
+</div>
+</div><br>
+<center><button class="sub" onclick="c()">Submit</button></center>
+</body>
+</html>

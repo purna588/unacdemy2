@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div{
+width:800px;
+border:1px solid white;
+background-color:white;
+box-shadow:0 0 20px black;
+border-radius:20px;
+}
+
+body {
+  font-size: 28px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+}
+
+li {
+  float: left;
+}
+body {
+  font-size: 28px;
+}
+
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+.active {
+  background-color: #4CAF50;
+}
+.dark-mode {
+  background-color: black;
+  color: white;
+}
+table, td, th {
+  border: 3px solid black;
+}
+
+table {
+  border-collapse: collapse;
+  width: 50%;
+}
+
+th {
+  height: 70px;
+}
+body  {
+  background-image: url("https://images.unsplash.com/photo-1528460033278-a6ba57020470?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80");
+  background-color: #cccccc;
+background-repeat:no-repeat;
+background-size:cover;
+}
+
+</style>
+</head>
+<script>
+const st=sessionStorage.getItem("user");
+const res = st.replace(/(\r\n|\r|\n)/g, '<br>');
+document.write("<h2>Welcome"+" "+res+"</h2>");
+function a(){
+alert("Your are sub to JAVA,Python,Html,JS");
+}
+function myFunction() {
+   var element = document.body;
+   element.classList.toggle("dark-mode");
+}
+
+</script>
+<body>
+
+  <center><h2 style="font-family:Courier New">Unacademy 2.0</h2>
+  <p>Welcome Gold user</p></center>
+
+
+<ul>
+  <li><a class="active" href="#home">Home</a></li>
+ <li><a onclick="a()">my subscription</a></li>
+   <li><a href="http://wa.me/+916281796892">Tec support</a></li>
+  <li style="float:right"><a class="active" href="file:///C:/Users/HEMASRI/Desktop/pro/feedback.html">Feed Back</a></li>
+<li><a href="#news" onclick="myFunction()">Dark mode</a></li>
+<li><a href="https://www.onlinegdb.com/" ">Compiler</a></li>
+</ul>
+<center><h3 style="font-family: Garamond">Welcome Gold user enjoy your content 😊</h3></center><br><br>
+<center>
+<center><table border="3px" width="2px">
+<tr>
+    <th>JAVA</th>
+    <th>PYTHON</th>
+    <th>HTML</th>
+<th>JS</th>
+  </tr>
+  <tr>
+    <td><a href="https://ocw.mit.edu/courses/6-092-introduction-to-programming-in-java-january-iap-2010/pages/lecture-notes/">Notes</a></td>
+    <td><a href="https://www.programiz.com/python-programming">NOTES</a></td>
+    <td><a href="https://www.slideshare.net/mukiibiismail/html-notes-116298924">NOTES</a></td>
+<td><a href="https://wesbos.com/javascript">NOTES</a></td>
+  </tr>
+  <tr>
+    <td><a href="https://youtu.be/J_d1fJy90GY">VIDEOS</a></td>
+    <td><a href="https://youtu.be/vgoffYa7_7E">VIDEOS</a></td>
+    <td><a href="https://youtu.be/dD2EISBDjWM">VIDEOS</a></td>
+<td><a href="https://youtu.be/W6NZfCO5SIk">VIDEOS</a></td>
+  </tr>
+
+</table></center><br><br><hr>
+<h3 style="font-family: Garamond">If you have any doudt pls upload that pic.Our team will verify and contact you</h3>
+<center> <input type="file" id="myFile" name="filename">
+  <input type="submit"></center><hr>
+<div>
+<h4 style="font-family: Garamond">For Gold subscription Chat bot is ther if u have any subject related doubts are there chat with us we will clarify</h4>
+<button><a href="file:///C:/Users/HEMASRI/Desktop/pra/chat%20bot.html">Chat Bot</a></button></div>
+</body>
+</html>
+
+

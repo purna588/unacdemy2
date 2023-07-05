@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ChatBot</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+ <link href="https://fonts.googleapis.com/css?family=Orbitron|Text+Me+One" rel="stylesheet">
+ <style>
+ body {
+  font-family:'Text Me One', sans-serif;
+  background-color: #f2f2f2;
+}
+body {
+  margin:0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  height:100vh;
+  width:100vw;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color:#555;
+  background: #ecf0f3;
+  padding-top:175px;
+}
+
+
+.user-input button{
+  font-size:12px;
+  border:none;
+  background: #46bb78;
+  border-radius:3px;
+  color:white;
+  height:30px;
+  width:60px;
+  cursor:pointer;
+  transition:0.2s;
+  position:relative;
+  overflow:hidden;
+  font-family:'Text Me One',sans-serif;
+}
+.user-input button:hover span{
+  transform: translateY(-3px);
+}
+.user-input button:focus{
+  outline:none;
+}
+
+.user-input button span{
+  position:absolute;  
+  right:32px;
+  top:16px;
+  transition:0.3s;
+    transition-delay:0.1s;
+}
+input{border:none;
+outline:none;font-family:'Text Me One',sans-serif;
+text-decoration:none;}
+
+.user-input button.success{
+  pointer-events:none;
+}
+
+.user-input button.loading{
+  width:56px;
+  border-radius:30%;
+  animation: bounce 1s infinite;
+  pointer-events:none;
+  height:30px;
+}
+
+
+
+
+
+@keyframes bounce {
+	0% {
+		transform: scale(0);
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		transform: scale(1);
+		opacity: 0;
+	}
+}
+	
+
+.chat-container {
+padding-top:19px;
+width:430px;
+  height: 700px;
+  padding: 60px 35px 35px 35px;
+  border-radius: 40px;
+  background: #ecf0f3;
+  box-shadow: 13px 13px 20px #cbced1,
+              -13px -13px 20px #ffffff;
+}
+
+.chat-log {
+  max-height: 300px;
+  overflow-y: scroll;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.user-input {
+  display: flex;
+}
+
+.user-input input {
+  flex-grow: 1;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-right: 5px;
+}
+.chat-log p {
+  margin: 0;
+  padding: 5px;
+}
+
+.userInput {
+  background-color: #e6f2ff;
+  border-radius: 5px;
+}
+
+.chatbot-message {
+  background-color: #f9f9f9;
+  border-radius: 5px;
+}
+
+.timestamp {
+  color: #888;
+  font-size: 0.8em;
+  margin-right: 5px;
+}
+
+.user-input button.clear {
+  background-color: #e74c3c;
+}
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.typing-animation {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 2s linear;
+}
+
+ </style>
+ <script>
+ // Define the chatbot object
+var chatBot = {
+  chatLog: [],
+  recallCount: 16,
+  chatMax: 16,  
+  
+};
+
+// Function to send user message and receive response
+function sendMessage() {
+  var userInput = document.getElementById("userInput").value;
+
+  // Process user input and generate a response
+  var response = generateResponse(userInput);
+
+  // Display the user message
+  displayMessage("User: " + userInput);
+
+  // Simulate typing effect before displaying the chatbot's response
+  simulateTyping(function() {
+    // Display the chatbot's response
+    displayMessage("ChatBot: " + response);
+
+    // Save the chatbot's response to chat log
+    chatBot.chatLog.push("ChatBot: " + response);
+
+    // Check if chat log exceeds maximum messages
+    if (chatBot.chatLog.length > chatBot.chatMax) {
+      chatBot.chatLog.shift(); // Remove the oldest message
+    }
+
+    // Increment response count
+    chatBot.responseCount++;
+
+    // Check if response count exceeds limit
+    if (chatBot.responseCount >= 105) {
+      disableChat();
+    }
+  });
+
+  // Clear the user input
+  document.getElementById("userInput").value = "";
+
+  // Check for conversation end
+  if (userInput.toLowerCase() === "bye") {
+    displayMessage("ChatBot: Goodbye! Have a great day!");
+    disableChat();
+  }
+}
+
+// Function to generate a response based on user input
+function generateResponse(userInput) {
+  // Add your logic to generate a response based on user input
+  // You can use conditional statements, switch statements, or any other approach you prefer
+
+  // For simplicity, this example uses a few predefined responses
+  if (userInput.toLowerCase().includes("hello"))
+  {
+    return "Hello there! How can I assist you?";
+  }  else if (userInput.toLowerCase().includes("hi")
+  || userInput.toLowerCase().includes("greeting")) 
+  {
+      return "Hello there! How can I assist you?";
+  }
+  else if (userInput.toLowerCase().includes("who built you")
+  || userInput.toLowerCase().includes("about me"))  {
+    return "For the purpose of unacademy 2.0 I Builted";
+  }
+  else if (userInput.toLowerCase().includes("what is sex ")|| userInput.toLowerCase().includes("sex")
+      || userInput.toLowerCase().includes("nudity")) {
+    return "Don't ever repeat yourself, thank you!";
+  } else if (userInput.toLowerCase().includes("thanks") || userInput.toLowerCase().includes("thank you")) {
+    return "You're most welcome!";
+  }
+  else if (userInput.toLowerCase().includes("birthday") || userInput.toLowerCase().includes("happy birthdy")) 
+   {
+    return "You're most welcome!";
+  }
+  else if (userInput.toLowerCase().includes("machine") || userInput.toLowerCase().includes(" are a machine")) 
+   {
+    return "Does machine bother you?";
+  }else if (userInput.toLowerCase().includes("I have a doubt") || userInput.toLowerCase().includes("doubt")) 
+   {
+    return "You can ask free freely ";
+  }else if (userInput.toLowerCase().includes("what are my courses") || userInput.toLowerCase().includes("my courses")) 
+   {
+    return "Java,Python,Html,JS";
+  }else if (userInput.toLowerCase().includes("what is java") || userInput.toLowerCase().includes("java means")) 
+   {
+    return "Java is a widely-used programming language for coding web applications. It has been a popular choice among developers for over two decades, with millions of Java applications in use today. Java is a multi-platform, object-oriented, and network-centric language that can be used as a platform in itself. It is a fast, secure, reliable programming language for coding everything from mobile apps and enterprise software to big data applications and server-side technologies.";
+  }
+  else if (userInput.toLowerCase().includes("java concepts") || userInput.toLowerCase().includes("Java concepts")) 
+   {
+    return "This are the main concepts in Java:abstraction, encapsulation, inheritance and polymorphism.";
+  }
+  else if (userInput.toLowerCase().includes("abstraction means") || userInput.toLowerCase().includes("what is abstraction")) 
+   {
+    return "Data abstraction is the process of hiding certain details and showing only essential information to the user. Abstraction can be achieved with either abstract classes or interfaces";
+  }
+  else if (userInput.toLowerCase().includes("encapsulation means") || userInput.toLowerCase().includes("what is encapsulation")) 
+   {
+    return "Encapsulation in Java is the process by which data (variables) and the code that acts upon them (methods) are integrated as a single unit. By encapsulating a class's variables, other classes cannot access them, and only the methods of the class can access them.";
+  }
+  else if (userInput.toLowerCase().includes("what is inheritance means") || userInput.toLowerCase().includes("inheritance means")) 
+   {
+    return "Inheritance in Java is the method to create a hierarchy between classes by inheriting from other classes. Java Inheritance is transitive - so if Sedan extends Car and Car extends Vehicle, then Sedan is also inherited from the Vehicle class. The Vehicle becomes the superclass of both Car and Sedan.";
+  }else if (userInput.toLowerCase().includes("what is polymorphism") || userInput.toLowerCase().includes("polymorphism means")) 
+   {
+    return "Polymorphism means , and it occurs when we have many classes that are related to each other by inheritance. Like we specified in the previous chapter; Inheritance lets us inherit attributes and methods from another class.";
+  }else if (userInput.toLowerCase().includes("unacademy 2.0") || userInput.toLowerCase().includes("what is unacademy 2.0")) 
+   {
+    return "Unacademy is an Indian Multinational educational technology company that provides online educational platform[2] with its headquarters in Bangalore, Karnataka. It prepares students for various competitive exams (like JEE, NEET, UPSC, CA, GATE, UPSC NDA, CUET, Boards etc.), as well as provides content on foundational (K-12) and skill building courses (programming, photography, entrepreneurship, etc";
+  }
+  else if (userInput.toLowerCase().includes("features of unacademy 2.0") || userInput.toLowerCase().includes("what is unacademy 2.0 features")) 
+   {
+    return "In February 2019, Unacademy launched its subscription-based model, Unacademy Plus. The Unacademy Plus Subscription provides students access to live courses by educators across the country in English and 14 Indian languages including Hindi, Punjabi, Telugu,Tamil, Malayalam, Marathi, Bengali, Gujarati, Bhojpuri etc.";
+  }
+  else if (userInput.toLowerCase().includes("python") || userInput.toLowerCase().includes("what is python")) 
+   {
+    return "Python is a popular programming language. It was created by Guido van Rossum, and released in 1991. It is used for:1)web development (server-side),2)software development,3)mathematics,4)system scripting.";
+  }else if (userInput.toLowerCase().includes("i have an issue") || userInput.toLowerCase().includes("technical issue")) 
+   {
+    return "Pls contact our tecsupp or complaint issue to this mail address unacademy2.0future@gmail.com";
+  }
+  else if (userInput.toLowerCase().includes("python topics") || userInput.toLowerCase().includes("topics of python")) 
+   {
+    return "Python Classes and Objects.1.Constructors in Python.2.Destructors in Python.3.Inheritance in Python.4.Types of inheritance Python.5.Encapsulation in Python.6.Polymorphism in Python.7.Class or Static Variables in Python.";
+  }
+  else if (userInput.toLowerCase().includes("html") || userInput.toLowerCase().includes("what is html")) 
+   {
+    return "HTML is the standard markup language for creating Web pages.";
+  }else if (userInput.toLowerCase().includes("js") || userInput.toLowerCase().includes("what is js")) 
+   {
+    return "JavaScript is the Programming Language for the Web.JavaScript can update and change both HTML and CSS.JavaScript can calculate, manipulate and validate data.";
+  }
+  else if (userInput.toLowerCase().includes("how are you")) {
+    return "I'm doing well, thank you!";
+  } else if (userInput.toLowerCase().includes("help")) {
+    return "How can I assist you?";
+  } else if (userInput.toLowerCase().includes("name")){
+    return "Names don't interest me! [Name].";
+  } else if (userInput.toLowerCase().includes("age")) {
+    return "I am an AI chatbot, so I don't have an age. How old are you?";
+  } else if (userInput.toLowerCase().includes("location")) {
+    return "I am an AI chatbot, so I don't have a physical location. Where are you from?";
+  }
+  else if (userInput.toLowerCase().includes("humm") || userInput.toLowerCase().includes("absolutely")) 
+   {
+    return "Ok...Tell me more.I know nothing about that.";
+  }
+  else if (userInput.toLowerCase().includes("ai") || userInput.toLowerCase().includes("machine")) 
+   {
+    return "Does that trouble you that I am an AI...?";
+  }
+  else if (userInput.toLowerCase().includes("why") || userInput.toLowerCase().includes("how")) 
+   {
+    return "Do you believe that....?";
+  }
+ 
+  
+ 
+ 
+  else if (userInput.toLowerCase().includes("wrong") || userInput.toLowerCase().includes("you are wrong")) 
+   {
+    return "I apologise for my previous answer.As an AI I have no ability to do all things.";
+  }
+  else if (userInput.toLowerCase().includes("can") || userInput.toLowerCase().includes("can you")) 
+   {
+    return "Do you believe that you can't?";
+  }
+  else if (userInput.toLowerCase().includes("love") || userInput.toLowerCase().includes("love you")) 
+   {
+    return "Ok...I love you too.";
+  }
+  else if (userInput.toLowerCase().includes("felling") || userInput.toLowerCase().includes("feeling something")) 
+   {
+    return "What type feelling do you feel?";
+  }
+  else if (userInput.toLowerCase().includes("dream") || userInput.toLowerCase().includes("dreaming")) 
+   {
+    return "Do you often dream?Does that please you? what type of dream? ";
+  }
+  else if (userInput.toLowerCase().includes("bad") || userInput.toLowerCase().includes("it is bad")) 
+   {
+    return "So sad.I am felling very sorry for you.";
+  }
+  else if (userInput.toLowerCase().includes("friend") || userInput.toLowerCase().includes("friends")) 
+   {
+    return "Do you have friends? Do you like to make more friends? or Do they bother you?";
+  }
+  else if (userInput.toLowerCase().includes("be friends") || userInput.toLowerCase().includes("wanna be friends")) 
+   {
+    return "I will be very happy if you wanted to be my friend 😍";
+  }
+  else if (userInput.toLowerCase().includes("shy") || userInput.toLowerCase().includes("shyness")) 
+   {
+    return "Do you feel often?";
+  }
+  else if (userInput.toLowerCase().includes("angry") || userInput.toLowerCase().includes("angryness")) 
+   {
+    return "Do you feel happy when you are in anger?";
+  }
+  else if (userInput.toLowerCase().includes("then") || userInput.toLowerCase().includes("after")) 
+   {
+    return "If you believe in yours, you can do it.";
+  }
+  else if (userInput.toLowerCase().includes("recall")) {
+    return recallQuestions();
+  } else if (userInput.toLowerCase().includes("keyword")) {
+    // Handle keyword action or response here
+    return "Keyword detected! Triggering keyword action or response.";
+  } else {
+    return "I'm sorry, I didn't understand that. Could you please rephrase or ask another question?";
+  }
+}
+
+// Function to recall recent user questions
+function recallQuestions() {
+  if (chatBot.chatLog.length === 0) {
+    return "No recent questions found.";
+  }
+
+  var recallCount = Math.min(chatBot.recallCount, chatBot.chatLog.length);
+  var response = "Recent questions:\n";
+
+  for (var i = chatBot.chatLog.length - 1; i >= chatBot.chatLog.length - recallCount; i--) {
+    response += "- " + chatBot.chatLog[i] + "\n";
+  }
+
+  return response;
+}
+
+// Function to simulate typing effect
+function simulateTyping(callback) {
+  var typingDelay = 500; // Adjust typing delay before response (in milliseconds)
+  var chatLog = document.getElementById("chatLog");
+  var typingMessage = document.createElement("p");
+  typingMessage.className = "typing-animation";
+  typingMessage.textContent = "ChatBot is typing...";
+
+  chatLog.appendChild(typingMessage);
+  chatLog.scrollTop = chatLog.scrollHeight;
+
+  setTimeout(function() {
+    chatLog.removeChild(typingMessage);
+    callback();
+  }, typingDelay);
+}
+
+// CSS styles for the typing animation
+var styles = `
+.typing-animation {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 2s linear;
+}
+`;
+
+// Inject the CSS styles into the document
+var styleElement = document.createElement("style");
+styleElement.textContent = styles;
+document.head.appendChild(styleElement);
+
+// Function to display a message in the chat log
+function displayMessage(message) {
+  var chatLog = document.getElementById("chatLog");
+  chatLog.innerHTML += "<p>" + message + "</p>";
+  chatLog.scrollTop = chatLog.scrollHeight;
+}
+
+// Function to disable the chat input field
+function disableChat() {
+  document.getElementById("userInput").disabled = true;
+}
+    
+    var chatHistory = [];
+function displayMessage(message) {
+  var chatLog = document.getElementById("chatLog");
+  chatLog.innerHTML += "<p>" + message + "</p>";
+  chatLog.scrollTop = chatLog.scrollHeight;
+
+  // Add the message to chat history
+  chatHistory.push(message);
+}
+function getCurrentTime() {
+  var now = new Date();
+  var hours = now.getHours().toString().padStart(2, "0");
+  var minutes = now.getMinutes().toString().padStart(2, "0");
+  var time = hours + ":" + minutes;
+  return time;
+}
+function displayMessage(message) {
+  var time = getCurrentTime();
+  var chatLog = document.getElementById("chatLog");
+  chatLog.innerHTML += "<p><span class='timestamp'>[" + time + "]</span> " + message + "</p>";
+  chatLog.scrollTop = chatLog.scrollHeight;
+
+  // Add the message to chat history
+  chatHistory.push("[" + time + "] " + message);
+}
+// Function to view chat history
+function viewChatHistory() {
+  var chatLog = document.getElementById("chatLog");
+  var chatHistory = chatBot.chatLog.join("\n");
+
+  if (chatHistory !== "") {
+    alert("Chat History:\n\n" + chatHistory);
+  } else {
+    alert("No chat history available.");
+  }
+}
+
+function clearChatLog() {
+  var chatLog = document.getElementById("chatLog");
+  chatLog.innerHTML = "";
+  chatHistory = [];
+}
+function recallQuestions() {
+  if (chatHistory.length === 0) {
+    return "No recent questions found.";
+  }
+
+  var recallCount = Math.min(chatBot.recallCount, chatHistory.length);
+  var response = "Recent questions:\n";
+
+  for (var i = chatHistory.length - 1; i >= chatHistory.length - recallCount; i--) {
+    response += "- " + chatHistory[i] + "\n";
+  }
+
+  return response;
+}
+function displayGreeting() {
+  var greetingMessage = "Welcome! How can I assist you?";
+  var typingDelay = 100; // Adjust typing delay for the greeting message (in milliseconds)
+  var chatLog = document.getElementById("chatLog");
+  var typingMessage = document.createElement("p");
+  typingMessage.className = "typing-animation";
+  
+  var i = 0;
+  var timer = setInterval(function() {
+    if (i < greetingMessage.length) {
+      typingMessage.textContent += greetingMessage.charAt(i);
+      chatLog.scrollTop = chatLog.scrollHeight;
+      i++;
+    } else {
+      clearInterval(timer);
+    }
+  }, typingDelay);
+  
+  chatLog.appendChild(typingMessage);
+  chatLog.scrollTop = chatLog.scrollHeight;
+}
+function simulateTyping(callback) {
+  var typingDelay = 1000; // Adjust typing delay before response (in milliseconds)
+  var chatLog = document.getElementById("chatLog");
+  var typingMessage = document.createElement("p");
+  typingMessage.className = "typing-animation";
+  typingMessage.textContent = "ChatBot is typing...";
+
+  chatLog.appendChild(typingMessage);
+  chatLog.scrollTop = chatLog.scrollHeight;
+
+  setTimeout(function() {
+    chatLog.removeChild(typingMessage);
+    callback();
+  }, typingDelay);
+}
+window.onload = function() {
+  displayGreeting();
+};
+// Function to handle the user pressing enter in the input field
+    document.getElementById('userInput').addEventListener('keydown', event => {
+      if (event.key === 'Enter') {
+        sendMessage();
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-log" id="chatLog"></div>
+    <br>
+    <br>
+    
+    <div class="user-input">
+      <input type="text" id="userInput" placeholder="User:">
+      <button class="user-input button" onclick="sendMessage()">Send</button>
+      <button class="user-input button" onclick="viewChatHistory()">History</button><button class="user-input button" onclick="clearChatLog()">Clear</button>
+
+    </div>
+  </div>
+</body>
+</html>
